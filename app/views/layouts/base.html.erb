@@ -19,14 +19,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%# Specifies the default name of home screen bookmark in iOS 6+ %>
-    <meta name="apple-mobile-web-app-title" content="Questions">
+    <meta name="apple-mobile-web-app-title" content="Digital Lunch & Learn">
+    <link rel="manifest" href="/manifest.json">
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <title>
-      <%= strip_tags(yield(:title)) + " – " if content_for?(:title) %>
-      Questions
+      Digital Lunch & Learn
     </title>
   </head>
   <body>
