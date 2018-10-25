@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <%= link_to("Digital L & L", root_path, class: "navbar-brand") %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+          <%= navbar_link_to("Ask a Question",
+                             new_question_path,
+                             active_when: { controller: "questions", action: "new" }) %>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle <%= 'active' if controller_name === "home" && action_name != "index"%>"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Meet the Team
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <%= dropdown_link_to("Rick",
+                               "/team/rick",
+                               active_when: { controller: "home", action: "rick" }) %>
+            <%= dropdown_link_to("Craig",
+                                "/team/craig",
+                                active_when: { controller: "home", action: "craig" }) %>
+            <%= dropdown_link_to("Drew",
+                                 "/team/drew",
+                                 active_when: { controller: "home", action: "drew" }) %>
+            <div class="dropdown-divider"></div>
+            <%= dropdown_link_to("Everyone",
+                               "/team",
+                               active_when: { controller: "home", action: "team" }) %>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+</nav>
+
+<nav>
+  <ol class="breadcrumb">
+    <% @breadcrumbs&.each do |bc| %>
+      <%= breadcrumb_link_to(bc[:label], bc[:path], bc[:options]) %>
+    <% end %>
+  </ol>
+</nav>

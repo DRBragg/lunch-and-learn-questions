@@ -1,0 +1,9 @@
+<% provide(:title, "Cello Health Digital Lunch & Learn") %>
+<div class="my-5 text-center">
+  <%= link_to new_question_path, class: "btn btn-primary" do %>
+    <%= fa_icon("plus", text: "Ask a Question") %>
+  <% end %>
+  <%= link_to "/team", class: "btn btn-primary" do %>
+    <%= fa_icon("users", text: "Meet the Team") %>
+  <% end %>
+</div>

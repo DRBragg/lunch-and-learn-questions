@@ -1,0 +1,8 @@
+<%= bootstrap_form_for(@question) do |f| %>
+
+  <%= f.text_area :question %>
+
+  <%= f.primary "Ask" %>
+  <%= link_to "Back", root_path, class: "btn btn-link" %>
+
+<% end %>

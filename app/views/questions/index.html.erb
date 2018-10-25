@@ -1,0 +1,9 @@
+<% provide(:title, "Questions") %>
+
+<table class="table table-striped">
+  <tbody id="questions">
+    <% @questions.each do |question| %>
+      <%= render 'question', question: question %>
+    <% end %>
+  </tbody>
+</table>
