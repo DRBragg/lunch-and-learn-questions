@@ -5,7 +5,7 @@ require 'open-uri'
 
 class Experiments::Hockey::HockeyController < ApplicationController
   skip_before_action :verify_authenticity_token
-  # before_action :verify_slack_request
+  before_action :verify_slack_request
 
   def create
     json = scrape_bucks
