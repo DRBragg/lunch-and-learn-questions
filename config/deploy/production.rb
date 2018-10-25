@@ -1,6 +1,3 @@
-set :branch, ENV.fetch("CAPISTRANO_BRANCH", "master")
-set :mb_sidekiq_concurrency, 1
-
-server "example.com",
-       user: "deployer",
+server "68.183.30.83",
+       user: "deploy",
        roles: %w(app backup cron db redis sidekiq web)
