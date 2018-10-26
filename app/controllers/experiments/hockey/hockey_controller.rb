@@ -5,11 +5,16 @@ require 'open-uri'
 
 class Experiments::Hockey::HockeyController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :verify_slack_request
+  #before_action :verify_slack_request
 
   def create
-    json = scrape_bucks
-    render json: json
+    if params[:text]
+      attachments = scrape_by_input(params[:text])
+    else
+      attachments = scrape_bucks
+      attachments.concat(scrap_hatfield)
+    end
+    render json: {text: "Upcoming Sticks and Pucks", attachments: attachments}
   end
 
   private
@@ -30,15 +35,41 @@ class Experiments::Hockey::HockeyController < ApplicationController
       end
     end
 
+    def scrape_by_input(input)
+      rink = input&.split(" ")&.first&.downcase
+      if rink === "bucks"
+        scrape_bucks.first
+      elsif rink === "wintersports"
+        scrape_bucks.last
+      elsif rink === "hatfield"
+        scrap_hatfield
+      else
+        attachments = scrape_bucks
+        attachments.concat(scrap_hatfield)
+      end
+    end
+
+    def scrap_hatfield
+      site = Nokogiri::HTML(open("http://hatfieldice.maxgalaxy.net/Schedule.aspx?ID=6"))
+      data = site.css(".rsAptColor").map{|x| x.attributes["title"].value}
+      html_data = data.map { |e| Nokogiri::HTML(e) }
+      dates = html_data.map do |data|
+        "#{data.css(".wrToolTipValue")[1].text} - #{data.css(".wrToolTipTime").text} #{data.css(".wrToolTipValue").first.text}"
+      end
+      [
+        make_slack_attachment("Hatfield Ice", "350 County Line Road Colmar PA", dates.join("\n"))
+      ]
+    end
+
     def scrape_bucks
       site = Nokogiri::HTML(open("http://bucksice.com/daily-schedules/stick-pucks/"))
       data = site.css(".entry-content p").map(&:text).join(",").split("_______________________________")
       bucks = data.first.split(",")
       wintersports = data.last.split(",")
-      {
-        text: "Upcoming Sticks and Pucks",
-        attachments: [convert_s_and_p(bucks - [""]), convert_s_and_p(wintersports - [""])]
-      }
+      [
+        convert_s_and_p(bucks - [""]),
+        convert_s_and_p(wintersports - [""])
+      ]
     end
 
     def convert_s_and_p(data)
