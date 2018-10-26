@@ -38,11 +38,11 @@ class Experiments::Hockey::HockeyController < ApplicationController
     def scrape_by_input(input)
       rink = input&.split(" ")&.first&.downcase
       if rink === "bucks"
-        scrape_bucks.first
+        [scrape_bucks.first]
       elsif rink === "wintersports"
-        scrape_bucks.last
+        [scrape_bucks.last]
       elsif rink === "hatfield"
-        scrap_hatfield
+        [scrap_hatfield]
       else
         attachments = scrape_bucks
         attachments.concat(scrap_hatfield)
