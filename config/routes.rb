@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :ash_contacts
   resources :questions
   root "home#index"
   get "/team" => "home#team"

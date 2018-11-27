@@ -1,0 +1,11 @@
+<%= bootstrap_form_for(@ash_contact) do |f| %>
+
+  <%= f.alert_message "Please review the problems below:" %>
+
+  <%= f.text_field :email %>
+  <%= f.text_field :trial %>
+
+  <%= f.primary %>
+  <%= link_to "Back", ash_contacts_path, class: "btn btn-link" %>
+
+<% end %>
