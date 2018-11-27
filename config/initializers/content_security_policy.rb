@@ -23,3 +23,14 @@
 # For further information see the following documentation:
 # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy-Report-Only
 # Rails.application.config.content_security_policy_report_only = true
+
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
+  allow do
+    origins '*'
+
+    resource '*',
+             headers: :any,
+             methods: %i[get post put patch delete options head],
+             expose: ['Access-Control-Allow-Origin']
+  end
+end

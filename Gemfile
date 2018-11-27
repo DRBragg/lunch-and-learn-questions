@@ -22,6 +22,7 @@ gem "sass-rails", "~> 5.0"
 gem "sidekiq", ">= 4.2.0"
 gem "turbolinks", "~> 5"
 gem 'redis', '~> 4.0'
+gem 'rack-cors', require: 'rack/cors'
 
 group :development do
   gem "annotate", ">= 2.5.0"
