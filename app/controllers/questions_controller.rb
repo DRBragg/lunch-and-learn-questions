@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
-  http_basic_authenticate_with name: "lunchandlearn", password: "DevTeam", except: [:new, :create]
+  before_action :set_question, only: %i[show edit update destroy]
+  http_basic_authenticate_with name: 'lunchandlearn', password: 'DevTeam', except: %i[new create]
 
   # GET /questions
   def index
@@ -48,13 +48,14 @@ class QuestionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_question
-      @question = Question.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def question_params
-      params.require(:question).permit(:question)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_question
+    @question = Question.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def question_params
+    params.require(:question).permit(:question)
+  end
 end

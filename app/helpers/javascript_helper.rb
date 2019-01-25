@@ -7,9 +7,7 @@ module JavascriptHelper
   def javascript_include_async_tag(*args)
     options = args.extract_options!
 
-    unless options["debug"] != false && request_debug_assets?
-      options[:async] = true
-    end
+    options[:async] = true unless options['debug'] != false && request_debug_assets?
 
     javascript_include_tag(*args, options)
   end

@@ -1,16 +1,16 @@
 class ApplicationController < ActionController::Base
   before_action :set_breadcrumb
-  
+
   def set_breadcrumb
     @breadcrumbs = [home_breadcrumb]
   end
 
   def home_breadcrumb
-    {label: 'Home', path: '/', options: { active_when: {controller: 'home', action: 'index' } }}
+    { label: 'Home', path: '/', options: { active_when: { controller: 'home', action: 'index' } } }
   end
 
   def team_breadcrumb
-    {label: 'Team', path: '/team', options: { active_when: {controller: 'home', action: 'team' } }}
+    { label: 'Team', path: '/team', options: { active_when: { controller: 'home', action: 'team' } } }
   end
 
   def rick_breadcrumb

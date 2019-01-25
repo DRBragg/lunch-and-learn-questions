@@ -11,7 +11,7 @@ module NavbarHelper
   #           active_when: { controller: "home" }) %>
   #
   def navbar_link_to(label, path, options={})
-    active_when = options.delete(:active_when) { Hash.new }
+    active_when = options.delete(:active_when) { {} }
     active = active_when.all? do |key, value|
       case value
       when Regexp
@@ -21,13 +21,13 @@ module NavbarHelper
       end
     end
 
-    content_tag(:li, class: "nav-item") do
+    content_tag(:li, class: 'nav-item') do
       link_to(label, path, class: "nav-link #{'active' if active}")
     end
   end
 
   def dropdown_link_to(label, path, options={})
-    active_when = options.delete(:active_when) { Hash.new }
+    active_when = options.delete(:active_when) { {} }
     active = active_when.all? do |key, value|
       case value
       when Regexp
@@ -41,7 +41,7 @@ module NavbarHelper
   end
 
   def breadcrumb_link_to(label, path, options={})
-    active_when = options.delete(:active_when) { Hash.new }
+    active_when = options.delete(:active_when) { {} }
     active = active_when.all? do |key, value|
       case value
       when Regexp

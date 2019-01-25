@@ -17,12 +17,16 @@ gem "marco-polo"
 gem "pg", ">= 0.18"
 gem "pgcli-rails"
 gem "puma", "~> 3.11"
-gem "rails", "~> 5.2.1"
+gem "rails", "~> 5.2.2"
 gem "sass-rails", "~> 5.0"
 gem "sidekiq", ">= 4.2.0"
 gem "turbolinks", "~> 5"
 gem 'redis', '~> 4.0'
 gem 'rack-cors', require: 'rack/cors'
+gem 'slack-ruby-bot'
+gem 'async-websocket'
+gem 'httparty'
+
 
 group :development do
   gem "annotate", ">= 2.5.0"

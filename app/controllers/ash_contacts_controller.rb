@@ -1,6 +1,6 @@
 class AshContactsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
-  before_action :set_ash_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_ash_contact, only: %i[show edit update destroy]
 
   # GET /ash_contacts
   def index
@@ -26,7 +26,7 @@ class AshContactsController < ApplicationController
 
     respond_to do |format|
       if @ash_contact.save
-        format.html { redirect_to @ash_contact, notice: 'Contact was successfully created.'}
+        format.html { redirect_to @ash_contact, notice: 'Contact was successfully created.' }
         format.json { render json: @ash_contact }
       else
         format.html { render :new }
@@ -51,13 +51,14 @@ class AshContactsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ash_contact
-      @ash_contact = AshContact.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def ash_contact_params
-      params.require(:ash_contact).permit(:email, :trial)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ash_contact
+    @ash_contact = AshContact.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def ash_contact_params
+    params.require(:ash_contact).permit(:email, :trial)
+  end
 end
