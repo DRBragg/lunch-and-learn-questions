@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 require 'httparty'
 
 class Bot < SlackRubyBot::Bot
