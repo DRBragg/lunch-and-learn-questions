@@ -9,7 +9,7 @@
           <%= navbar_link_to("Q's and A's",
                              new_question_path,
                              active_when: { controller: "questions", action: "new" }) %>
-        <li class="nav-item dropdown">
+        <!-- <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle <%= 'active' if controller_name === "home" && action_name != "index"%>"
             href="#"
@@ -36,7 +36,7 @@
                                "/team",
                                active_when: { controller: "home", action: "team" }) %>
           </div>
-        </li>
+        </li> -->
 
       </ul>
     </div>
